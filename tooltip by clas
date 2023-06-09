@@ -48,6 +48,19 @@
       tooltipContainer.appendChild(element);
       tooltipContainer.appendChild(tooltipText);
     });
+    
+    var tooltip = document.querySelector('.tooltip');
+tooltip.addEventListener('mouseover', function() {
+  var tooltipText = 'This is a tooltip';
+  var tooltipEl = document.createElement('div');
+  tooltipEl.textContent = tooltipText;
+  tooltipEl.style.position = 'absolute';
+  tooltipEl.style.top = '5px';
+  tooltipEl.style.left = '50px';
+  tooltipEl.style.zIndex = '1000';
+  tooltip.appendChild(tooltipEl);
+});
+
   </script>
 </body>
 </html>
