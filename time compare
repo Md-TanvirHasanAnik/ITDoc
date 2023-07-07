@@ -45,3 +45,27 @@ const sortedTimes = times.sort((a, b) => {
 
   return timeA > timeB;
 });
+
+
+
+const times = ["12:05 PM ET", "12:39 AM ET", "10:30 AM ET", "08:15 PM ET"];
+
+// Custom comparison function
+const compareTimes = (time1, time2) => {
+  // Extract hours, minutes, and period (AM/PM) from time1
+  const [, hours1, minutes1, period1] = time1.match(/(\d+):(\d+) ([APM]{2})/);
+  const formattedTime1 = `${hours1.padStart(2, '0')}:${minutes1.padStart(2, '0')} ${period1}`;
+
+  // Extract hours, minutes, and period (AM/PM) from time2
+  const [, hours2, minutes2, period2] = time2.match(/(\d+):(\d+) ([APM]{2})/);
+  const formattedTime2 = `${hours2.padStart(2, '0')}:${minutes2.padStart(2, '0')} ${period2}`;
+
+  // Use Moment.js to compare the formatted times
+  return moment(formattedTime1, 'hh:mm A').diff(moment(formattedTime2, 'hh:mm A'));
+};
+
+// Sort the times using the custom comparison function
+const sortedTimes = times.sort(compareTimes);
+
+// Output the sorted times
+console.log(sortedTimes);
