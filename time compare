@@ -39,4 +39,9 @@ const sortedTimes = times.sort(compareTimes);
 console.log(sortedTimes);
 
 const sortedTimes = times.sort((a, b) => moment(a, 'h:mm A').diff(moment(b, 'h:mm A')));
+const sortedTimes = times.sort((a, b) => {
+  const timeA = new Date(a.replace(' AM', ''));
+  const timeB = new Date(b.replace(' AM', ''));
 
+  return timeA > timeB;
+});
