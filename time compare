@@ -69,3 +69,5 @@ const sortedTimes = times.sort(compareTimes);
 
 // Output the sorted times
 console.log(sortedTimes);
+
+moment(a, 'h:mm A').isAfter(moment(b, 'h:mm A')) ? 1 : -1
