@@ -1,0 +1,26 @@
+var listObjectsRequest = new ListObjectsV2Request
+{
+    BucketName = bucketName,
+    Prefix = folderPath
+};
+
+var listObjectsResponse = await s3Client.ListObjectsV2Async(listObjectsRequest);
+
+foreach (var obj in listObjectsResponse.S3Objects)
+{
+    var deleteObjectRequest = new DeleteObjectRequest
+    {
+        BucketName = bucketName,
+        Key = obj.Key
+    };
+    await s3Client.DeleteObjectAsync(deleteObjectRequest);
+}
+
+// Delete the folder itself
+var deleteFolderRequest = new DeleteObjectRequest
+{
+    BucketName = bucketName,
+    Key = folderPath
+};
+
+await s3Client.DeleteObjectAsync(deleteFolderRequest);
